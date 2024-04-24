@@ -1,0 +1,54 @@
+pipeline {
+    agent {
+      label 'master'
+    }
+
+    stages {
+        stage('Prepare') {
+            steps {
+                sh 'echo "preparing pipeline"'
+                sh 'mkdir -p output'
+                sh 'ls -l'
+            }
+        }
+		
+        stage('Build for testing') {
+            when {
+                branch 'develop'
+            }
+            steps {
+                sh 'cd .. && tar -czf fp_ecommerce.tar.gzip fp_ecommerce_develop/*'
+                sh 'cd .. && ls -l'
+                sh 'pwd'
+                sh 'mv ../fp_ecommerce.tar.gzip  output/'
+                stash name: 'fp_ecommerce', includes: 'output/*'
+            }
+        }
+		
+        stage('Deploy on tst') {
+            when {
+                branch 'develop'
+            }
+            agent {
+                label 'tst'
+            }
+            steps {
+                unstash 'fp_ecommerce'
+                sh 'pwd'
+                sh 'sudo tar xzf output/fp_ecommerce.tar.gzip -C /home/jenkins/deployments'
+                sh 'cd /home/jenkins/deployments && sudo mv -f fp_ecommerce_develop fp_ecommerce_new-${BUILD_NUMBER}'
+                sh 'sudo chown -R apache:apache /home/jenkins/deployments/fp_ecommerce_new-${BUILD_NUMBER}'
+				sh 'sudo cp -Rf /home/jenkins/deployments/fp_ecommerce_new-${BUILD_NUMBER}/* /var/www/jnbk/fp_ecommerce/source/'
+				//sh 'sudo cp -Rf /var/www/jnbk/fp_ecommerce/source/src/environments/environment.dev.ts /var/www/jnbk/fp_ecommerce/source/src/environments/environment.ts'
+				sh 'cd /var/www/jnbk/fp_ecommerce/source/ && sudo npm install --legacy-peer-deps'
+                sh 'sudo npm run build --prefix /var/www/jnbk/fp_ecommerce/source'
+                sh 'sudo cp -Rf /var/www/jnbk/fp_ecommerce/source/.next/* /var/www/jnbk/fp_ecommerce/public/'
+				sh 'sudo chown -R apache:apache  /var/www/jnbk/fp_ecommerce'
+				sh 'sudo chmod -R g+w  /var/www/jnbk/fp_ecommerce'
+
+            }
+        }
+				
+
+     }
+}
