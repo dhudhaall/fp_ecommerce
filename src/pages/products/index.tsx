@@ -1,6 +1,5 @@
 import SearchResults from "./searchResults";
 import "./productSearch.scss";
-import SearchMainBox from "./searchBoxMain";
 import { useRouter } from "next/router";
 import { Button } from "@mui/material";
 
