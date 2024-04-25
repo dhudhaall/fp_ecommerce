@@ -49,7 +49,7 @@ function ProductCard(props:any){
           <div className="item-products__body text-width">
             <div className="item-products__desc">
               <strong>{item?.parent_category_name}</strong>, {item?.category_name}
-              <div className="item-products__sys_loc">{item.p_sys_loc_name}</div>
+              <div className="item-products__sys_loc">{item?.p_sys_loc_name}</div>
             </div>
             <div className="item-products__title">
               <a>{item?.name}</a>
