@@ -1,0 +1,32 @@
+.star {
+    font-size: x-large;
+    width: 22px;
+    display: inline-block;
+    color: #0099ff73;
+    position: relative;
+}
+.star:last-child {
+    margin-right: 0;
+}
+.star:before {
+    content:'\2605';
+}
+
+.star.on.green {
+    color: #199922;
+}
+.star.on.orange {
+    color: orange;
+}
+.star.on.red {
+    color: red;
+}
+.star.half:after {
+    content:'\2605';
+    color: #199922;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 9.5px;
+    overflow: hidden;
+}

@@ -1,0 +1,246 @@
+.product-pic {
+    max-width: 10rem;
+    margin-right: 3.2rem;
+
+    img {
+        width: 100%;
+    }
+}
+
+.desc {
+    flex-grow: 1;
+}
+
+.product-title {
+    color: #000;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    text-align: center;
+}
+
+.product-offer {
+    color: #000;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-align: left;
+}
+
+.instock {
+    display: flex;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #991919;
+}
+
+.count-price .price {
+    color: #000;
+    font-size: 1.5rem;
+    font-weight: 700 !important;
+    margin-left: 2.5rem;
+}
+
+.remarks {
+    color: #6c7173;
+    margin-top: 1.6rem;
+}
+
+.remarks p {
+    font-style: italic;
+}
+
+.remarks .form-control {
+    border-radius: 30px;
+    height: 30px;
+    width: 186px;
+}
+
+.modal-footer {
+    background-color: transparent;
+    padding: 0 0 0 3rem;
+    justify-content: flex-start;
+}
+
+.modal-footer .btn-submit {
+    margin-right: 1.7rem;
+}
+
+.modal-footer .btn {
+    font-size: 1.6rem;
+}
+
+.btn-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgb(0 153 255 / 50%);
+    display: flex;
+    justify-content: center;
+    line-height: 1.39;
+    margin: 2rem 0 1.6rem;
+}
+
+.status-2 {}
+
+.add-animation:hover .cart {
+
+    transform: translateX(-10px);
+    transition: transform .3s;
+}
+
+.product-offer {
+    .ratingStar {
+        display: flex;
+
+        .stars {
+            .star {
+                font-size: 16px !important;
+                width: 16px !important;
+            }
+
+        }
+    }
+}
+
+.plus:disabled .plus:before {
+    border-color: #6c7173 !important;
+}
+
+.plus:disabled .plus::after {
+    border-color: #6c7173 !important;
+}
+
+.modal-footer .cart {
+    filter: invert(1) !important;
+    margin-right: 0.8rem;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.danger {
+    color: red;
+}
+
+.btn:disabled {
+    background: grey !important;
+    opacity: 0.4 !important;
+}
+.reorder_item_setting{
+	width: 100%;
+	margin-top: 10px;
+	.checkbox__text{
+		&:after{
+			font-size: 1.2rem;
+		}
+	}
+	.reorder_row{
+		margin-top: 10px;
+		white-space: nowrap;
+	}
+	&[disabled]{
+		opacity: 0.5;
+	}
+	&.disabled_block{
+		opacity: 0.5;
+	}
+
+    .countmodule .plus_sign {
+        position: absolute;
+        left: 24px;
+        font-size: 110%;
+    }
+    .countmodule .form-control {
+        background-color: #f5f7f8;
+        border-radius: 3rem;
+        border: none;
+        height: 3rem;
+        font-size: 1.4rem;
+        margin: 0 5px;
+        text-align: center;
+        width: 6.2rem;
+        transition: box-shadow 0.3s;
+      }
+      .countmodule .form-control:hover, .countmodule .form-control:focus {
+        box-shadow: 0 5px 5px rgba(0, 0, 0, 0.15);
+      }
+      .countmodule .minus,
+      .countmodule .plus {
+        padding: 0;
+        height: 15px;
+        width: 15px;
+      }
+      .countmodule .minus:hover:before, .countmodule .minus:hover:after,
+      .countmodule .plus:hover:before,
+      .countmodule .plus:hover:after {
+        border-color: #0099ff;
+      }
+      .countmodule .minus {
+        position: relative;
+      }
+      .countmodule .minus:before {
+        border-top: 3px solid #0672ba;
+        left: 0;
+        top: 6px;
+        width: 100%;
+      }
+      .countmodule .plus {
+        position: relative;
+      }
+      .countmodule .plus:before {
+        border-top: 3px solid #0672ba;
+        left: 0;
+        top: 6px;
+        width: 100%;
+      }
+      .countmodule .plus:after {
+        border-left: 3px solid #0672ba;
+        height: 100%;
+        left: 6px;
+        top: 0;
+      }
+      .countmodule.reorder_days {
+        position: relative;
+      }
+      .countmodule.reorder_days .days_sign {
+        position: absolute;
+        left: 50px;
+      }
+      .countmodule.reorder_days .form-control {
+        text-align: left;
+        padding-left: 16px;
+        padding-right: 32px;
+      }
+      .countmodule.reorder_max_date .form-control {
+        width: 139px;
+      }
+      .countmodule .plus_sign {
+        position: absolute;
+        left: 24px;
+        font-size: 110%;
+      }
+      .countmodule.floatmodule {
+        width: 8em;
+        position: relative;
+      }
+      .countmodule.floatmodule .percent_sign {
+        position: absolute;
+        left: 62px;
+      }
+      .countmodule.floatmodule input.count-control {
+        text-align: left;
+        padding-left: 9px;
+      }
+      .countmodule.floatmodule.reorder_price_percent input {
+        padding-left: 14px;
+      }
+}

@@ -1,18 +1,56 @@
 
+import RatingStar from "@/app/components/starRating/starRating";
 import "./productSearch.scss";
+import { useRouter } from "next/router";
+import CustomDesignedDialog from "@/app/components/customDesignedDialog/CustomDesignedDialog";
+import AddToCart from "../../app/components/cart/AddToCart";
+import { Offers,Product } from "@/app/Models/product";
+import { useState } from "react";
+
 function ProductCard(props:any){
 
     const {item, index, translation} = props;
     const isActive = item?.["in_wishlist"];
+    const router = useRouter();
+
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState({} as any);
+  const [selectedOffer, setSelectedOffer] = useState({} as any);
+  const [selectedOfferIndex, setSelectedOfferIndex] = useState<any>();
+
+    const toProductDetail = (productID:number)=>{
+      router.push(`/productDetails/${productID}`)
+    }
+
+    const openCartDialog = (product: Product, offer: Offers, index: number) => {
+      console.log("openCartDialog--------------");
+      setSelectedProduct(product);
+      setSelectedOffer(offer);
+      setSelectedOfferIndex(index);
+      setIsModalOpen(true);
+    };
+    const closeCartModal = () => {
+      setIsModalOpen(false);
+    };
+
+    const addedInCart = (offer: any, index: number) => {
+      const obj = { ...offer };
+      obj.in_cart = true;
+  
+      // const temp = [...inCartOffers];
+      // temp[index] = obj;
+      // setSetInCartOffers(temp);
+    };
 
     return (
+      <div>
         <div className="ProductCard" key={"card" + index}>
         <div className="products__item item-products ItemBox card-hight">
           <div
-            className="item-products__pic"
-           
+            className="item-products__pic" 
           >
-            <a title={item?.name} className="image_p">
+            <a title={item?.name} className="image_p" onClick={()=>toProductDetail(item.product_id)}>
               {item?.image !== "" && item?.image != null && (
                 <img src={item?.image} alt={item?.name} />
               )}
@@ -24,9 +62,9 @@ function ProductCard(props:any){
                   className="item-products__brand-img item-products__brand_opacity "
                 />
               )}
-              
             </a>
-            <a className="item-products__brand">
+          
+            <a className="item-products__brand"  href={`/productDetails/${item.product_id}`}>
               {item?.image !== "" &&
                 item?.image !== null &&
                 item?.manufacturer_image !== "" &&
@@ -38,6 +76,7 @@ function ProductCard(props:any){
                   />
                 )}
             </a>
+            
           </div>
           <button
             // onClick={() => heartClick(isActive, item.product_id)}
@@ -48,11 +87,12 @@ function ProductCard(props:any){
           </button>
           <div className="item-products__body text-width">
             <div className="item-products__desc">
+           
               <strong>{item?.parent_category_name}</strong>, {item?.category_name}
-              <div className="item-products__sys_loc">{item?.p_sys_loc_name}</div>
+              <div className="item-products__sys_loc">{item.p_sys_loc_name}</div>
             </div>
             <div className="item-products__title">
-              <a>{item?.name}</a>
+              <a>{item?.name} </a>
             </div>
             <div className="item-products__subtitle">
               <span
@@ -70,7 +110,7 @@ function ProductCard(props:any){
                   {translation?.vql_vendor}
                 </div>
                 <div className="item-products__header item-products__quote-instock instock status-1">
-                  {translation?.vql_qty}{" "}
+                  {translation?.vql_qty}
                 </div>
                 <div className="item-products__header item-products__quote-supply-time ">
                   <div className="tooltip-main">
@@ -97,7 +137,7 @@ function ProductCard(props:any){
                     className="item-products__quote-wh-code rating-custom tooltip-main"
                   >
                     {offer?.offer_code}
-                    {/* <RatingStar rating={offer.reliability}></RatingStar> */}
+                    <RatingStar rating={offer?.reliability}></RatingStar>
                     <div className="_info_tooltip">
                       <div className="_stock">
                         <div className="_item-stock ">
@@ -115,7 +155,7 @@ function ProductCard(props:any){
                           <div className="_item-stock__divider"></div>
                           <div className="_item-stock__text _reliability_percent">
                             <span className="_reliability_number">{offer?.reliability_percent || 0}%</span>
-                            {/* <RatingStar rating={offer.reliability}></RatingStar> */}
+                            <RatingStar rating={offer?.reliability}></RatingStar>
                           </div>
                         </div>
                         <div className="_item-stock  _flex-7030">
@@ -146,7 +186,7 @@ function ProductCard(props:any){
                         </div>
                         <div className="_item-stock _flex-7030">
                           <div className="_item-stock__title _row_head">
-                            On Time{" "}
+                            On Time
                           </div>
                           <div className="_item-stock__divider"></div>
                           <div className="_item-stock__text">
@@ -206,9 +246,9 @@ function ProductCard(props:any){
                     </div>
                     <div className="fav-cart">
                       <button
-                        // onClick={() => {
-                        // //   openCartDialog(item, offer, i);
-                        // }}
+                        onClick={() => {
+                          openCartDialog(item, offer, i);
+                        }}
                         type="button"
                         className={`btn-cart item-products__cart-btn js-btnAddToCart js-cart-78103-18-1 ${
                           offer?.in_cart 
@@ -226,9 +266,9 @@ function ProductCard(props:any){
                 <div className="item-products__quote d-flex justify-content-center">
                   <a
                     className="viewMore"
-                    // onClick={() => toProductDetail(item.product_id)}
+                    onClick={() => toProductDetail(item.product_id)}
                   >
-                    {" "}
+                   
                     View {Number(item?.["offers"]?.length - 3)} more offers
                   </a>
                 </div>
@@ -236,7 +276,25 @@ function ProductCard(props:any){
             </div>
           )}
         </div>
-      
+
+ <CustomDesignedDialog
+        open={isModalOpen}
+        onClose={closeCartModal}
+        title="Add to cart"
+        component={
+          <AddToCart
+            product={selectedProduct}
+            offer={selectedOffer}
+            closeCartFromChild={closeCartModal}
+            cartAdded={(offer: any, i: number) => addedInCart(offer, i)}
+            selectedOfferIndex={selectedOfferIndex}
+          ></AddToCart>
+
+          // <RatingStar rating={10}></RatingStar>
+        }
+        forLogin={false}
+      />
+       </div>
       </div>
     )
 }

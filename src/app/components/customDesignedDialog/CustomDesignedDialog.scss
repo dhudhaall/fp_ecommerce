@@ -1,0 +1,69 @@
+#modal-content-bg {
+
+    .MuiPaper-root {
+        position: relative;
+        overflow: inherit !important;
+        max-width: unset !important;
+        border-radius: 0px !important;
+    }
+
+    .MuiPaper-root:after {
+        content: "" !important;
+        position: absolute;
+        left: -134px;
+        bottom: 0px;
+        height: 292px;
+        width: 134px;
+        background: url(/assets/template/images/bg/modal-bg.png) no-repeat !important;
+    }
+
+    .MuiDialogContent-root {
+        overflow-y: auto !important;
+    }
+
+    .MuiPaper-root:before {
+        content: "" !important;
+        position: absolute;
+        background-position: right top !important;
+        height: 273px;
+        top: 0px;
+        right: -135px;
+        -webkit-transform: scaleX(-1);
+        transform: scale(-1);
+        width: 135px;
+        background: url(/assets/template/images/bg/modal-bg.png) no-repeat !important;
+    }
+}
+
+.warning-modal-icon {
+    color: #ffffff !important;
+    position: absolute;
+    right: 8px;
+    top: 10px;
+    /* font-size: 30px !important; */
+    width: 42px !important;
+    height: 50px !important;
+}
+
+
+.css-1t1j96h-MuiPaper-root-MuiDialog-paper {
+    max-width: unset !important;
+}
+.modalHeading .arrow{
+    transition: 0.5s;
+    transform: rotate(0deg);
+}
+
+.modalHeading .arrow:hover{
+   
+    transition: 0.5s;
+    transform: rotate(90deg);
+  }
+ .paddingRemovelogin{
+         padding: 0px !important;
+ }
+ .arrows-size{
+    margin-right: -9px;
+    margin-top: -59px;
+    width: 22px;
+ }
