@@ -19,7 +19,7 @@ function ProductCard(props:any){
   const [selectedOffer, setSelectedOffer] = useState({} as any);
   const [selectedOfferIndex, setSelectedOfferIndex] = useState<any>();
 
-    const toProductDetail = (productID:number)=>{
+    const toProductDetail = (productID:any)=>{
       router.push(`/productDetails/${productID}`)
     }
 
@@ -50,7 +50,7 @@ function ProductCard(props:any){
           <div
             className="item-products__pic" 
           >
-            <a title={item?.name} className="image_p" onClick={()=>toProductDetail(item.product_id)}>
+            <a title={item?.name} className="image_p" onClick={()=>toProductDetail(item?.product_id)}>
               {item?.image !== "" && item?.image != null && (
                 <img src={item?.image} alt={item?.name} />
               )}
@@ -64,7 +64,7 @@ function ProductCard(props:any){
               )}
             </a>
           
-            <a className="item-products__brand"  href={`/productDetails/${item.product_id}`}>
+            <a className="item-products__brand"  href={`/productDetails/${item?.product_id}`}>
               {item?.image !== "" &&
                 item?.image !== null &&
                 item?.manufacturer_image !== "" &&
@@ -89,7 +89,7 @@ function ProductCard(props:any){
             <div className="item-products__desc">
            
               <strong>{item?.parent_category_name}</strong>, {item?.category_name}
-              <div className="item-products__sys_loc">{item.p_sys_loc_name}</div>
+              <div className="item-products__sys_loc">{item?.p_sys_loc_name}</div>
             </div>
             <div className="item-products__title">
               <a>{item?.name} </a>
@@ -227,7 +227,7 @@ function ProductCard(props:any){
                     title="Avail 6122pcs"
                   >
                     {offer?.qty > 300 && <>300+</>}
-                    {offer?.qty < 300 && <>{offer.qty}</>}
+                    {offer?.qty < 300 && <>{offer?.qty}</>}
                   </div>
                   <div className="item-products__quote-supply-time mr-2">
                     {" "}
@@ -266,7 +266,7 @@ function ProductCard(props:any){
                 <div className="item-products__quote d-flex justify-content-center">
                   <a
                     className="viewMore"
-                    onClick={() => toProductDetail(item.product_id)}
+                    onClick={() => toProductDetail(item?.product_id)}
                   >
                    
                     View {Number(item?.["offers"]?.length - 3)} more offers
