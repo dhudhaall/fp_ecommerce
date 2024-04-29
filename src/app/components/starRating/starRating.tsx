@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import './StarRating.scss'
+import './starRating.scss'
 
 
 function RatingStar(props: any) {
