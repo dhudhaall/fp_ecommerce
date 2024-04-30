@@ -12,6 +12,7 @@ const updateCompareLength = new Subject();
 const updateCartIn = new Subject();
 const onLogoutCartUpdate = new Subject();
 const onLoginCartUpdate= new Subject();
+const shareTopbarapi= new Subject();
 // let catalogsData$  = catalogsData.asObservable();
 
 const ShareDataService = {
@@ -60,6 +61,10 @@ const ShareDataService = {
 
     setLoginCartUpdate: (d:boolean) => onLoginCartUpdate.next({ data: d}),
     getLoginCartUpdate: () => onLoginCartUpdate.asObservable(),
+    
+    //share data whole response form topbar api
+    setTopbarapiData: (d:boolean) => shareTopbarapi.next({ data: d}),
+    getTopbarapiData: () => shareTopbarapi.asObservable(),
 };
 
 export default ShareDataService;

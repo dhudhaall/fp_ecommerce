@@ -1172,7 +1172,7 @@ function ProductDetail({id, product, translation}:any) {
 
 export async function getServerSideProps({query}:any) {
 
-    console.log("context", query);
+    
     // const {query} =context;
       // Fetch data from an API                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
       const res = await fetch(`https://fp-client-api.asakashi.com/api/main/products/${query['id']}?guest_id=1713248912844&country_id=1&lang_id=1&currency_id=13`);

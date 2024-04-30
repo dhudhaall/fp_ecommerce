@@ -20,8 +20,11 @@ function ProductSearch ({  products, translations }:any){
     
        const submitPartNumberForm = async (event: any): Promise<void> => {
                 event.preventDefault();
-                console.log("partNumber2------",partNumber)
-                router.push(`/products?part_no=${partNumber}&type=partnumber&p_brand_id=${p_brand}&part_sub_category_id=${sub_cat}`);
+                const previousParams = {...router.query,part_no:partNumber, type:'partnumber', p_brand_id:p_brand ,part_sub_category_id:sub_cat};
+                router.push({
+                  pathname: '/products',
+                  query:previousParams
+                });
                 // const res = await fetch(`https://fp-client-api.asakashi.com/api/main/products/part_search?formType=partnumber&part_no=${partNumber}&lang=1&guest_id=1713248912844&country_id=1&lang_id=1&currency_id=13&per_page=20&page=1`);
                 // products = {};
                 // products = await res.json();
@@ -40,8 +43,12 @@ function ProductSearch ({  products, translations }:any){
           }else{
             p_brand =  0;
           }
-         
-          router.push(`/products?part_no=${partNumber}&type=partnumber&p_brand_id=${p_brand}&part_sub_category_id=${sub_cat}`);
+          const previousParams = {...router.query, part_no:partNumber, type:'partnumber', p_brand_id:p_brand ,part_sub_category_id:sub_cat};
+
+          router.push({ 
+            pathname:'/products',
+            query:previousParams
+          });
         }
         
         const changeFiltersubCat = (event: any, value:number) => {
@@ -50,7 +57,13 @@ function ProductSearch ({  products, translations }:any){
           }else{
             sub_cat = 0;
           }
-          router.push(`/products?part_no=${partNumber}&type=partnumber&p_brand_id=${p_brand}&part_sub_category_id=${sub_cat}`);
+
+          const previousParams = {...router.query, part_no:partNumber, type:'partnumber', p_brand_id:p_brand ,part_sub_category_id:sub_cat};
+
+          router.push({ 
+            pathname:'/products',
+            query:previousParams
+          });
         }
     return (
         <>
@@ -179,11 +192,11 @@ export async function getServerSideProps({query}:any) {
   console.log("context", query);
   // const {query} =context;
     // Fetch data from an API                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-    const res = await fetch(`https://fp-client-api.asakashi.com/api/main/products/part_search?formType=partnumber&part_no=${query['part_no']}&p_brand_id[]=${[query['p_brand_id']]}&part_sub_category_id[]=${query['part_sub_category_id']}&lang=1&guest_id=1713248912844&country_id=1&lang_id=1&currency_id=13&per_page=20&page=1`);
+    const res = await fetch(`https://fp-client-api.asakashi.com/api/main/products/part_search?formType=partnumber&part_no=${query['part_no']}&p_brand_id[]=${[query['p_brand_id']]}&part_sub_category_id[]=${query['part_sub_category_id']}&lang_id=${query['lang_id']}&guest_id=1713248912844&country_id=1&lang_id=1&currency_id=13&per_page=20&page=1`);
 
     const products = await res.json();
 
-    const resTranslation = await fetch('https://fp-client-api.asakashi.com/api/langs/load_page?lang_id=1&page=product/search/partSearch&guest_id=1713248912844&country_id=1&currency_id=13');
+    const resTranslation = await fetch(`https://fp-client-api.asakashi.com/api/langs/load_page?lang_id=${query['lang_id']}&page=product/search/partSearch&guest_id=1713248912844&country_id=1&currency_id=13`);
     const translations = await resTranslation.json();
   
     return {
