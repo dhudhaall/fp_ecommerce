@@ -2,7 +2,6 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchProductsStart, fetchProductsSuccess, fetchProductsFailure, setPage } from '../Slice/productSearchSlice';
 import {getProductsList } from '../../services/searchVehicle.service';
 import { AppThunk } from '../store';
-import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import { useSelector , useDispatch} from 'react-redux';
 import { fetchAllCheckoutDataFailure, fetchAllCheckoutDataStart, fetchAllCheckoutDataSuccess } from "../Slice/checkoutSlice";
 import { checkOutGetAll } from "../../services/checkout.service";

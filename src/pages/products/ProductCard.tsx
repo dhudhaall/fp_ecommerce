@@ -51,7 +51,7 @@ function ProductCard(props:any){
           <div
             className="item-products__pic" 
           >
-            <a title={item?.name} className="image_p" onClick={()=>toProductDetail(item.product_id)}>
+            <a title={item?.name} className="image_p" onClick={()=>toProductDetail(item?.product_id)}>
               {item?.image !== "" && item?.image != null && (
                 <img src={item?.image} alt={item?.name} />
               )}
@@ -68,7 +68,7 @@ function ProductCard(props:any){
             <Link className="item-products__brand"
             href={{
               pathname: '/productDetails/[id]',
-              query: { id: item.product_id},
+              query: { id: item?.product_id},
             }}>
               {item?.image !== "" &&
                 item?.image !== null &&
@@ -84,7 +84,7 @@ function ProductCard(props:any){
             
           </div>
           <button
-            // onClick={() => heartClick(isActive, item.product_id)}
+            // onClick={() => heartClick(isActive, item?.product_id)}
             type="button"
             className="item-products__fav-btn btn-fav js-add-wishlist to-fav"
           >
@@ -94,7 +94,7 @@ function ProductCard(props:any){
             <div className="item-products__desc">
            
               <strong>{item?.parent_category_name}</strong>, {item?.category_name}
-              <div className="item-products__sys_loc">{item.p_sys_loc_name}</div>
+              <div className="item-products__sys_loc">{item?.p_sys_loc_name}</div>
             </div>
             <div className="item-products__title">
               <a>{item?.name} </a>
@@ -271,7 +271,7 @@ function ProductCard(props:any){
                 <div className="item-products__quote d-flex justify-content-center">
                   <a
                     className="viewMore"
-                    onClick={() => toProductDetail(item.product_id)}
+                    onClick={() => toProductDetail(item?.product_id)}
                   >
                    
                     View {Number(item?.["offers"]?.length - 3)} more offers
