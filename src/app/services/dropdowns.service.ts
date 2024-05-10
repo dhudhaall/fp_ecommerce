@@ -1,4 +1,5 @@
-import axios from "axios";
+import axios from '../util/httpInteceptor';
+
 const environment = {
     mainBaseUrl: 'https://fp-client-api.asakashi.com/api/main',
     baseURL:'https://fp-client-api.asakashi.com/api',

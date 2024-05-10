@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import "./globals.scss";
 import { Provider } from "react-redux";
 import store from "./Store/store";
-import Footer from "./components/footer/footer";
+import Footer from "../pages/components/footer/footer";
 import Topbar from "./components/topbar/topbar";
 const inter = Inter({ subsets: ["latin"] });
 

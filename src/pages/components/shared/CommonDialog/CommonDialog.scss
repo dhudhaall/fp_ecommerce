@@ -1,0 +1,90 @@
+.search-custom {
+    .search__wrapper {
+        width: 300px;
+        flex-direction: column !important;
+        .select{
+            
+            position: relative;
+            margin-bottom: 20px;
+            background-color: #ffffff !important;
+            margin-left: 133px;
+          overflow: visible;
+            .MuiButtonBase-root{
+                background-color: #ffffff !important;
+                color: #0672ba !important;
+                
+                
+            }
+            
+           
+
+            #part-No{
+                background-color: #ffffff !important;
+            }
+            #part-No::before{
+                filter: unset !important;
+            }
+        }
+        .select::after{
+            content: "Search By";
+            position: absolute;
+            left: -128px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #000;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .short-btn {
+            background-color: #0672ba;
+            color: #fff;
+            align-items: center;
+            font-size: 1.6rem;
+            margin-top: 1.3rem;
+            width: 149px;
+            text-align: right;
+            padding:13px 14px;
+            border-radius: 35px;
+
+            .icon-search {
+                margin: unset !important;
+                position: relative;
+                background-position: -219px -37px ;
+                width: 17px;
+                height: 17px;
+            }
+
+            .icon-search::after {
+                content: "Search";
+                position: absolute;
+                left: 28px;
+                top: 50%;
+                color: #ffffff !important;
+                font-size: 20px;
+                transform: translateY(-50%);
+            }
+            
+
+        }
+
+    }
+   
+}
+.modalHeading .arrow{
+    transition: 0.4s;
+    transform: rotate(0deg);
+}
+
+.modalHeading .arrow:hover{
+   
+    transition: 0.4s;
+    transform: rotate(90deg);
+  }
+  .MuiPaper-root{
+    overflow: unset !important;
+    overflow-y:unset !important;
+  }
+  .MuiDialogContent-root{
+    overflow-y:unset !important;
+    overflow: unset !important;
+  }

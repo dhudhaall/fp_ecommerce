@@ -1,0 +1,19 @@
+.modalHeading .arrow{
+    transition: 0.5s;
+    transform: rotate(0deg);
+}
+
+.modalHeading .arrow:hover{
+   
+    transition: 0.5s;
+    transform: rotate(90deg);
+  }
+  .warning-modal-icon {
+    color: #ffffff !important;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 30px !important;
+    width: 29px !important;
+    height: 38px !important;
+}
